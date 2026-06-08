@@ -1,26 +1,280 @@
 @import "tailwindcss";
 
+/* ─── Base variables ───────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1A1410;
+  --foreground: #F5EDD8;
 }
 
+/* ─── Theme tokens (Tailwind v4 @theme inline) ─────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* ── Brand palette — Pomodoro (#C1272D) centrado em brand-700 ──────────── */
+  --color-brand-50:  #FFF1F1;
+  --color-brand-100: #FFE0E0;
+  --color-brand-200: #FFC4C5;
+  --color-brand-300: #FF9A9B;
+  --color-brand-400: #FF6567;
+  --color-brand-500: #E84548;
+  --color-brand-600: #D13035;
+  --color-brand-700: #C1272D;
+  --color-brand-800: #901E22;
+  --color-brand-900: #641519;
+  --color-brand-glow: rgba(193, 39, 45, 0.35);
+  --shadow-brand-glow: 0 4px 28px rgba(193, 39, 45, 0.35);
+
+  /* ── Accent — Dourado assado ────────────────────────────────────────────── */
+  --color-accent-300: #F7C88A;
+  --color-accent-400: #F2A65A;
+  --color-accent-500: #E8893A;
+
+  /* ── Herb (manjericão) & Sweet (doce) ──────────────────────────────────── */
+  --color-herb:  #3E7C4F;
+  --color-sweet: #9B5E9B;
+
+  /* ── Neutros quentes ────────────────────────────────────────────────────── */
+  --color-stone-950: #1A1410;
+  --color-stone-900: #221C17;
+  --color-stone-800: #2E2620;
+  --color-stone-700: #3D342D;
+  --color-stone-600: #5A4E46;
+  --color-stone-400: #8A7D74;
+  --color-stone-300: #B0A49B;
+  --color-stone-200: #CFC7BE;
+  --color-stone-100: #E8E0D5;
+  --color-stone-50:  #F5EDD8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ─── Body ─────────────────────────────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   KEYFRAMES — tema pizzaria / forno a lenha
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Pulsação do forno — laranja quente ↔ vermelho brasa */
+@keyframes oven-glow {
+  0%, 100% {
+    opacity: 0.7;
+    box-shadow: 0 0 32px 8px rgba(242, 166, 90, 0.25), 0 0 80px 20px rgba(193, 39, 45, 0.12);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 52px 14px rgba(242, 166, 90, 0.45), 0 0 120px 30px rgba(193, 39, 45, 0.22);
+  }
+}
+
+/* Vapor subindo — wisp leve */
+@keyframes steam-rise {
+  0%   { transform: translateY(0)   scaleX(1);    opacity: 0; }
+  20%  { opacity: 0.55; }
+  80%  { opacity: 0.2; }
+  100% { transform: translateY(-52px) scaleX(1.35); opacity: 0; }
+}
+
+/* Shimmer de queijo derretendo */
+@keyframes cheese-melt {
+  0%   { transform: translateX(-110%); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: translateX(110%);  opacity: 0.15; }
+}
+
+/* Revelação da pizza saindo do forno — escala + fade */
+@keyframes crust-reveal {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* Brasa pulsando */
+@keyframes ember-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.18); }
+}
+
+/* Deriva suave — aroma, decoração */
+@keyframes aroma-drift {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(6px); }
+}
+
+/* Shimmer do skeleton */
+@keyframes skel-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Fundo da página ────────────────────────────────────────────────────────
+   Escuridão rica de forno com glow quente no topo e textura sutil de madeira */
+.oven-bg {
+  background-color: #1A1410;
+  background-image:
+    radial-gradient(ellipse 110% 55% at 50% -10%, rgba(232, 137, 58, 0.13) 0%, transparent 62%),
+    radial-gradient(ellipse 70% 40% at 50% -5%,   rgba(193, 39, 45, 0.10) 0%, transparent 50%),
+    repeating-linear-gradient(
+      138deg,
+      transparent             0px,
+      transparent             18px,
+      rgba(255, 230, 180, 0.012) 18px,
+      rgba(255, 230, 180, 0.012) 19px,
+      transparent             19px,
+      transparent             36px
+    );
+  background-attachment: fixed;
+}
+
+/* ── Header glow ─────────────────────────────────────────────────────────── */
+.oven-header-glow {
+  box-shadow: inset 0 -1px 0 rgba(242, 166, 90, 0.14);
+}
+
+/* ── Shimmer dourado nos botões CTA (sweep on hover) ─────────────────────── */
+.pizza-crust-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.pizza-crust-filament {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  transform: translateX(-115%);
+  background: linear-gradient(
+    95deg,
+    transparent 25%,
+    rgba(247, 200, 138, 0.22) 50%,
+    transparent 75%
+  );
+  transition: transform 0.01s;
+}
+
+.pizza-crust-sheen:hover .pizza-crust-filament,
+.pizza-crust-sheen:focus-visible .pizza-crust-filament {
+  transform: translateX(115%);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Skeleton loader de card de pizza ───────────────────────────────────────
+   Top: círculo (representa a pizza), bottom: linhas de texto */
+.pizza-skel-card {
+  background: #2E2620;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pizza-skel-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(242, 166, 90, 0.07) 40%,
+    rgba(242, 166, 90, 0.14) 50%,
+    rgba(242, 166, 90, 0.07) 60%,
+    transparent 100%
+  );
+  background-size: 400px 100%;
+  animation: skel-shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Vapor decorativo ───────────────────────────────────────────────────────
+   Aplicar em spans finos acima de elementos de pizza */
+.steam-wisps {
+  animation: steam-rise 2.4s ease-out infinite;
+}
+
+/* ── Ponto de brasa decorativo ──────────────────────────────────────────────
+   Pequeno círculo laranja pulsando */
+.ember-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #F2A65A;
+  box-shadow: 0 0 6px 2px rgba(242, 166, 90, 0.55);
+  animation: ember-pulse 2.2s ease-in-out infinite;
+}
+
+/* ── Tags de tipo ───────────────────────────────────────────────────────────
+   Pílulas coloridas "salgada" (verde manjericão) e "doce" (roxo) */
+.herb-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(62, 124, 79, 0.18);
+  color: #6DB97E;
+  border: 1px solid rgba(62, 124, 79, 0.35);
+}
+
+.sweet-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(155, 94, 155, 0.18);
+  color: #C084C8;
+  border: 1px solid rgba(155, 94, 155, 0.35);
+}
+
+/* ── Card de sabor selecionado no builder ───────────────────────────────────
+   Borda e brilho quentes quando um sabor está na pizza */
+.flavor-card-selected {
+  border-color: #C1272D !important;
+  box-shadow:
+    0 0 0 2px rgba(193, 39, 45, 0.40),
+    0 4px 20px rgba(193, 39, 45, 0.20),
+    inset 0 0 0 1px rgba(193, 39, 45, 0.15);
+  background: rgba(193, 39, 45, 0.06) !important;
+}
+
+/* ── Barra inferior do builder de pizza ─────────────────────────────────────
+   Glass morphism escuro com borda quente no topo */
+.builder-bar {
+  background: rgba(26, 20, 16, 0.88);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-top: 1px solid rgba(242, 166, 90, 0.20);
+  box-shadow:
+    0 -8px 32px rgba(0, 0, 0, 0.40),
+    0 -1px 0 rgba(242, 166, 90, 0.10);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .steam-wisps,
+  .ember-dot,
+  .pizza-skel-card::before {
+    animation: none !important;
+  }
+
+  .pizza-crust-filament {
+    display: none;
+  }
 }
