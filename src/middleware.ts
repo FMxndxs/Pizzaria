@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 export async function middleware(req: NextRequest) {
+  // Página de login não precisa de proteção
+  if (req.nextUrl.pathname === '/admin/login') {
+    return NextResponse.next()
+  }
+
   const res = NextResponse.next()
 
   const supabase = createServerClient(
@@ -33,12 +38,13 @@ export async function middleware(req: NextRequest) {
     .single()
 
   if (!profile?.is_admin) {
-    return NextResponse.redirect(new URL('/', req.url))
+    return NextResponse.redirect(new URL('/admin/login', req.url))
   }
 
   return res
 }
 
 export const config = {
-  matcher: ['/admin/(dashboard)/:path*', '/admin/pedidos/:path*'],
+  // Protege todas as rotas /admin/* exceto /admin/login
+  matcher: ['/admin/:path*'],
 }
