@@ -7,7 +7,13 @@
 -- ═══════════════════════════════════════════════════════════════════════════════
 
 -- 0-B8: enum de papéis
-CREATE TYPE IF NOT EXISTS user_role AS ENUM ('owner', 'operator', 'kitchen');
+DO $$
+BEGIN
+  CREATE TYPE user_role AS ENUM ('owner', 'operator', 'kitchen');
+EXCEPTION
+  WHEN duplicate_object THEN NULL;
+END;
+$$;
 
 -- 0-B8: coluna role em profiles (default operator para novos usuários)
 ALTER TABLE profiles

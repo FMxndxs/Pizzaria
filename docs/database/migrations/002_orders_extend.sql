@@ -21,7 +21,13 @@ ALTER TYPE order_status ADD VALUE IF NOT EXISTS 'ready' AFTER 'preparing';
 -- Execute o bloco abaixo somente após a Etapa 1 ter sido commitada.
 
 -- 0-B7: enum + coluna fulfillment_type
-CREATE TYPE IF NOT EXISTS fulfillment_type AS ENUM ('delivery', 'pickup');
+DO $$
+BEGIN
+  CREATE TYPE fulfillment_type AS ENUM ('delivery', 'pickup');
+EXCEPTION
+  WHEN duplicate_object THEN NULL;
+END;
+$$;
 
 ALTER TABLE orders
   ADD COLUMN IF NOT EXISTS fulfillment_type fulfillment_type NOT NULL DEFAULT 'delivery',
