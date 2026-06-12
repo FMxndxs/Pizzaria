@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, ChevronUp, Copy, Check, Phone, Printer } from 'lucide-react'
+import { ChevronDown, ChevronUp, Copy, Check, Phone, Printer, MessageSquare } from 'lucide-react'
 import { OrderStatusSelect } from './OrderStatusSelect'
 import { formatBRL } from '@/lib/utils/formatters'
 import { buildWhatsAppUrl } from '@/lib/utils/whatsapp'
@@ -186,7 +186,7 @@ export function OrderCard({ order }: OrderCardProps) {
           {/* Observações */}
           {order.notes && (
             <div className="rounded-xl bg-stone-800/30 px-3 py-2.5 flex items-start gap-2">
-              <Phone className="w-3.5 h-3.5 text-stone-500 shrink-0 mt-0.5" />
+              <MessageSquare className="w-3.5 h-3.5 text-stone-500 shrink-0 mt-0.5" />
               <p className="text-sm text-stone-300">{order.notes}</p>
             </div>
           )}
