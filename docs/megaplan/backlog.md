@@ -26,15 +26,15 @@
 
 | ID | Título | Status |
 |---|---|---|
-| [A-B1](backlog-items/A-B1.md) | Server Action `createOrder` atômica | `pending` |
-| [A-B2](backlog-items/A-B2.md) | Validação Zod no boundary de criação | `pending` |
-| [A-B3](backlog-items/A-B3.md) | Migra `carrinho/page.tsx` para Server Action | `pending` |
-| [A-B4](backlog-items/A-B4.md) | Server Action `confirmOrder` | `pending` |
-| [A-B5](backlog-items/A-B5.md) | Server Action `advanceOrderStatus` guarded | `pending` |
-| [A-B6](backlog-items/A-B6.md) | `OrderStatusSelect` consume `advanceOrderStatus` | `pending` |
-| [A-B7](backlog-items/A-B7.md) | Server Action `cancelOrder` | `pending` |
-| [A-B8](backlog-items/A-B8.md) | Link WhatsApp de confirmação ao cliente | `pending` |
-| [A-B9](backlog-items/A-B9.md) | `order_code` visível no painel admin | `pending` |
+| [A-B1](backlog-items/A-B1.md) | Server Action `createOrder` atômica | `done` |
+| [A-B2](backlog-items/A-B2.md) | Validação Zod no boundary de criação | `done` |
+| [A-B3](backlog-items/A-B3.md) | Migra `carrinho/page.tsx` para Server Action | `done` |
+| [A-B4](backlog-items/A-B4.md) | Server Action `confirmOrder` | `done` |
+| [A-B5](backlog-items/A-B5.md) | Server Action `advanceOrderStatus` guarded | `done` |
+| [A-B6](backlog-items/A-B6.md) | `OrderStatusSelect` consume `advanceOrderStatus` | `done` |
+| [A-B7](backlog-items/A-B7.md) | Server Action `cancelOrder` | `done` |
+| [A-B8](backlog-items/A-B8.md) | Link WhatsApp de confirmação ao cliente | `done` |
+| [A-B9](backlog-items/A-B9.md) | `order_code` visível no painel admin | `done` |
 
 ## Cycle B — KDS realtime
 
@@ -94,7 +94,7 @@
 
 ## Status summary
 
-- **Pending:** 38
+- **Pending:** 29
 - **In-progress:** 0
-- **Done:** 13
+- **Done:** 22
 - **Superseded:** 0
