@@ -65,13 +65,18 @@ export type OrderStatus =
   | 'pending'
   | 'confirmed'
   | 'preparing'
+  | 'ready'
   | 'out_for_delivery'
   | 'delivered'
   | 'cancelled'
 
+export type FulfillmentType = 'delivery' | 'pickup'
+
+export type UserRole = 'owner' | 'operator' | 'kitchen'
+
 export interface OrderItemFlavor {
   name: string
-  type: FlavorType
+  type: FlavorType | null
   price: number
 }
 
@@ -87,8 +92,10 @@ export interface OrderItem {
 
 export interface Order {
   id: string
-  user_id: string | null       // NULL = pedido guest
+  user_id: string | null
   status: OrderStatus
+  order_code: string
+  order_seq: number
   customer_name: string
   customer_phone: string
   total: number
@@ -99,7 +106,10 @@ export interface Order {
   neighborhood: string
   city: string
   notes: string | null
+  fulfillment_type: FulfillmentType
+  courier_name: string | null
   created_at: string
+  updated_at: string
   items?: OrderItem[]
 }
 
@@ -149,6 +159,7 @@ export interface UserProfile {
   last_name: string
   phone: string
   is_admin: boolean
+  role: UserRole
   neighborhood: string
   city: string
   created_at: string
