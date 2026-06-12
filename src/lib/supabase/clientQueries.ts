@@ -20,6 +20,7 @@ interface CreateOrderParams {
   customerPhone: string
 }
 
+/** @deprecated Use createOrderAction (src/app/actions/orders.ts) */
 export async function createOrder(params: CreateOrderParams): Promise<string | null> {
   const supabase = createClient()
 

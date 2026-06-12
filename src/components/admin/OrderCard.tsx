@@ -50,9 +50,14 @@ export function OrderCard({ order }: OrderCardProps) {
           {ORDER_STATUS_META[order.status].emoji} {ORDER_STATUS_META[order.status].label}
         </span>
 
-        {/* Nome + hora */}
+        {/* Nome + código + hora */}
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-foreground text-sm truncate">{order.customer_name}</p>
+          <div className="flex items-center gap-2">
+            <p className="font-semibold text-foreground text-sm truncate">{order.customer_name}</p>
+            {order.order_code && (
+              <span className="text-xs font-mono text-stone-400 shrink-0">#{order.order_code}</span>
+            )}
+          </div>
           <p className="text-stone-500 text-xs">{createdAt}</p>
         </div>
 
@@ -188,7 +193,11 @@ export function OrderCard({ order }: OrderCardProps) {
 
           {/* ── Ações ─────────────────────────────────────────────────────── */}
           <div className="flex items-center justify-between gap-3 flex-wrap border-t border-stone-800/40 pt-3">
-            <OrderStatusSelect orderId={order.id} current={order.status} />
+            <OrderStatusSelect
+              orderId={order.id}
+              current={order.status}
+              fulfillmentType={order.fulfillment_type ?? 'delivery'}
+            />
             <a
               href={`https://wa.me/${order.customer_phone?.replace(/\D/g, '')}`}
               target="_blank"

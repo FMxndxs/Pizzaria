@@ -7,7 +7,8 @@ import { ShoppingCart, ArrowLeft, ChevronRight } from 'lucide-react'
 import { useCartStore } from '@/lib/store/cartStore'
 import { CartItemRow } from '@/components/cart/CartItemRow'
 import { CheckoutForm } from '@/components/cart/CheckoutForm'
-import { createOrder } from '@/lib/supabase/clientQueries'
+import { createOrderAction } from '@/app/actions/orders'
+import { cartItemsToOrderItems } from '@/lib/orders/mappers'
 import { buildWhatsAppUrl } from '@/lib/utils/whatsapp'
 import { formatBRL } from '@/lib/utils/formatters'
 import type { CheckoutFormData } from '@/lib/validations/checkout'
@@ -16,31 +17,39 @@ import type { DeliveryQuote } from '@/types'
 export default function CarrinhoPage() {
   const { items, total, clearCart } = useCartStore()
   const [loading, setLoading] = useState(false)
+  const [orderError, setOrderError] = useState<string | null>(null)
 
   const handleCheckout = async (data: CheckoutFormData, quote: DeliveryQuote | null) => {
     setLoading(true)
+    setOrderError(null)
 
     const freight = quote?.mode === 'delivery' ? (quote.freight ?? 0) : 0
     const grandTotal = total + freight
+    const fulfillmentType = quote?.mode === 'pickup_or_courier' ? 'pickup' : 'delivery'
 
-    // Persiste o pedido no Supabase (best-effort — não bloqueia o WhatsApp)
-    await createOrder({
-      userId:        null,  // guest checkout
-      items,
-      total:         grandTotal,
-      freight:       freight || undefined,
-      cep:           data.cep,
-      street:        data.street,
-      streetNumber:  data.number,
-      neighborhood:  data.neighborhood,
-      city:          data.city,
-      notes:         data.notes,
-      customerName:  data.name,
-      customerPhone: data.phone,
-    }).catch(() => {})
+    const result = await createOrderAction({
+      customer_name:    data.name,
+      customer_phone:   data.phone,
+      cep:              data.cep,
+      street:           data.street,
+      street_number:    data.number,
+      neighborhood:     data.neighborhood,
+      city:             data.city,
+      notes:            data.notes ?? null,
+      total:            grandTotal,
+      freight:          freight || null,
+      fulfillment_type: fulfillmentType,
+      items:            cartItemsToOrderItems(items),
+    })
 
-    // Abre WhatsApp
-    const url = buildWhatsAppUrl({
+    if (!result.ok) {
+      setOrderError(result.error)
+      setLoading(false)
+      return
+    }
+
+    // Abre WhatsApp do restaurante (notificação ao operador)
+    const waUrl = result.data.waUrl ?? buildWhatsAppUrl({
       customer: {
         name:         data.name,
         phone:        data.phone,
@@ -58,7 +67,7 @@ export default function CarrinhoPage() {
 
     clearCart()
     setLoading(false)
-    window.open(url, '_blank')
+    window.open(waUrl, '_blank')
   }
 
   if (items.length === 0) {
@@ -129,6 +138,9 @@ export default function CarrinhoPage() {
         <div className="lg:col-span-2">
           <div className="rounded-2xl border border-stone-800/60 bg-stone-900/40 p-6">
             <CheckoutForm onSubmit={handleCheckout} loading={loading} />
+            {orderError && (
+              <p className="mt-3 text-sm text-red-400 text-center">{orderError}</p>
+            )}
           </div>
         </div>
       </div>

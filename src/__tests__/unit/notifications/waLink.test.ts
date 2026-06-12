@@ -34,28 +34,33 @@ describe('WaLinkProvider', () => {
 
   test('url starts with https://wa.me/', async () => {
     const result = await provider.notifyCustomer(mockOrder, 'order_confirmed')
+    if (result.kind !== 'wa_link') throw new Error('Expected wa_link')
     expect(result.url).toMatch(/^https:\/\/wa\.me\//)
   })
 
   test('url contains customer phone number', async () => {
     const result = await provider.notifyCustomer(mockOrder, 'order_confirmed')
+    if (result.kind !== 'wa_link') throw new Error('Expected wa_link')
     expect(result.url).toContain(mockOrder.customer_phone)
   })
 
   test('url contains url-encoded text query param', async () => {
     const result = await provider.notifyCustomer(mockOrder, 'order_confirmed')
+    if (result.kind !== 'wa_link') throw new Error('Expected wa_link')
     expect(result.url).toContain('?text=')
   })
 
   test('supports order_ready event', async () => {
     const result = await provider.notifyCustomer(mockOrder, 'order_ready')
     expect(result.kind).toBe('wa_link')
+    if (result.kind !== 'wa_link') throw new Error('Expected wa_link')
     expect(result.url).toContain(mockOrder.customer_phone)
   })
 
   test('supports order_dispatched event', async () => {
     const result = await provider.notifyCustomer(mockOrder, 'order_dispatched')
     expect(result.kind).toBe('wa_link')
+    if (result.kind !== 'wa_link') throw new Error('Expected wa_link')
     expect(result.url).toContain(mockOrder.customer_phone)
   })
 })
