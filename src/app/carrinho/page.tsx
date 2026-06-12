@@ -48,8 +48,9 @@ export default function CarrinhoPage() {
       return
     }
 
-    // Abre WhatsApp do restaurante (notificação ao operador)
-    const waUrl = result.data.waUrl ?? buildWhatsAppUrl({
+    // Abre WhatsApp do restaurante com os detalhes do pedido (fluxo cliente → restaurante)
+    // O waUrl do action é para o operador notificar o cliente — não usado aqui
+    const restaurantUrl = buildWhatsAppUrl({
       customer: {
         name:         data.name,
         phone:        data.phone,
@@ -67,7 +68,7 @@ export default function CarrinhoPage() {
 
     clearCart()
     setLoading(false)
-    window.open(waUrl, '_blank')
+    window.open(restaurantUrl, '_blank')
   }
 
   if (items.length === 0) {
