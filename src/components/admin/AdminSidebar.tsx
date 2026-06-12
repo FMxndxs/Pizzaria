@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, ClipboardList, Pizza, Settings, LogOut, ExternalLink, Truck } from 'lucide-react'
+import { LayoutDashboard, ClipboardList, Pizza, Settings, LogOut, ExternalLink, Truck, BarChart2 } from 'lucide-react'
 import { useAuth } from '@/lib/context/AuthContext'
 
 const NAV = [
   { href: '/admin',               label: 'Visão Geral',  icon: LayoutDashboard },
   { href: '/admin/pedidos',       label: 'Pedidos',      icon: ClipboardList },
   { href: '/admin/despacho',      label: 'Despacho',     icon: Truck },
+  { href: '/admin/relatorios',    label: 'Relatórios',   icon: BarChart2 },
   { href: '/admin/sabores',       label: 'Sabores',      icon: Pizza },
   { href: '/admin/configuracoes', label: 'Configurações',icon: Settings },
 ]
