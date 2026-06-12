@@ -35,7 +35,6 @@ const base: Order = {
     flavors:      [{ name: 'Calabresa', price: 49.9, type: 'salgada' }],
     unit_price:   49.9,
     quantity:     1,
-    created_at:   '2026-06-12T12:00:00Z',
   }],
 }
 
