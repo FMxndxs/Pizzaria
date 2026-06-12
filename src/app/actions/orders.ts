@@ -7,6 +7,9 @@ import {
   confirmOrder as svcConfirmOrder,
   advanceStatus as svcAdvanceStatus,
   cancelOrder as svcCancelOrder,
+  dispatchDelivery as svcDispatchDelivery,
+  markPickedUp as svcMarkPickedUp,
+  markDelivered as svcMarkDelivered,
 } from '@/lib/orders/service'
 import { newOrderSchema } from '@/lib/orders/schemas'
 import { getNotificationProvider } from '@/lib/notifications'
@@ -67,6 +70,43 @@ export async function cancelOrderAction(
   if (result.ok) {
     revalidatePath('/admin/pedidos')
     revalidatePath('/cozinha')
+  }
+  return result
+}
+
+export async function dispatchDeliveryAction(
+  orderId: string,
+  courierName: string,
+): Promise<OrderServiceResult<Order>> {
+  const client = await createClient()
+  const result = await svcDispatchDelivery(client, orderId, courierName)
+  if (result.ok) {
+    revalidatePath('/admin/pedidos')
+    revalidatePath('/admin/despacho')
+  }
+  return result
+}
+
+export async function markPickedUpAction(
+  orderId: string,
+): Promise<OrderServiceResult<Order>> {
+  const client = await createClient()
+  const result = await svcMarkPickedUp(client, orderId)
+  if (result.ok) {
+    revalidatePath('/admin/pedidos')
+    revalidatePath('/admin/despacho')
+  }
+  return result
+}
+
+export async function markDeliveredAction(
+  orderId: string,
+): Promise<OrderServiceResult<Order>> {
+  const client = await createClient()
+  const result = await svcMarkDelivered(client, orderId)
+  if (result.ok) {
+    revalidatePath('/admin/pedidos')
+    revalidatePath('/admin/despacho')
   }
   return result
 }
