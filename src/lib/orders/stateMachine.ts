@@ -4,18 +4,19 @@ import type { FulfillmentType, OrderStatus } from '@/types'
 
 export interface OrderStatusMeta {
   label: string
-  color: string   // classe Tailwind de cor de texto/fundo
+  color: string      // badge completo: "bg-X text-Y" — usar em badges de status
+  textClass: string  // só texto: "text-X" — usar em <select> e elementos inline
   emoji: string
 }
 
 export const ORDER_STATUS_META: Record<OrderStatus, OrderStatusMeta> = {
-  pending:          { label: 'Aguardando',       color: 'text-yellow-700 bg-yellow-100',  emoji: '⏳' },
-  confirmed:        { label: 'Confirmado',        color: 'text-blue-700 bg-blue-100',     emoji: '✅' },
-  preparing:        { label: 'Em preparo',        color: 'text-orange-700 bg-orange-100', emoji: '👨‍🍳' },
-  ready:            { label: 'Pronto',            color: 'text-green-700 bg-green-100',   emoji: '🔔' },
-  out_for_delivery: { label: 'Saiu para entrega', color: 'text-purple-700 bg-purple-100', emoji: '🛵' },
-  delivered:        { label: 'Entregue',          color: 'text-gray-700 bg-gray-100',     emoji: '🏁' },
-  cancelled:        { label: 'Cancelado',         color: 'text-red-700 bg-red-100',       emoji: '❌' },
+  pending:          { label: 'Aguardando',       color: 'bg-stone-700/40 text-stone-300',   textClass: 'text-stone-300',  emoji: '⏳' },
+  confirmed:        { label: 'Confirmado',        color: 'bg-accent-500/20 text-accent-400', textClass: 'text-accent-400', emoji: '✅' },
+  preparing:        { label: 'Em preparo',        color: 'bg-orange-500/20 text-orange-400', textClass: 'text-orange-400', emoji: '👨‍🍳' },
+  ready:            { label: 'Pronto',            color: 'bg-green-500/20 text-green-400',   textClass: 'text-green-400',  emoji: '🔔' },
+  out_for_delivery: { label: 'Saiu para entrega', color: 'bg-blue-500/20 text-blue-400',     textClass: 'text-blue-400',   emoji: '🛵' },
+  delivered:        { label: 'Entregue',          color: 'bg-herb/20 text-herb',             textClass: 'text-herb',       emoji: '🏁' },
+  cancelled:        { label: 'Cancelado',         color: 'bg-brand-700/20 text-brand-400',   textClass: 'text-brand-400',  emoji: '❌' },
 }
 
 // ─── Transitions ──────────────────────────────────────────────────────────────

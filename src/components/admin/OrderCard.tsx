@@ -5,6 +5,7 @@ import { ChevronDown, ChevronUp, Copy, Check, Phone, MapPin, MessageSquare } fro
 import { OrderStatusSelect } from './OrderStatusSelect'
 import { formatBRL } from '@/lib/utils/formatters'
 import { buildWhatsAppUrl } from '@/lib/utils/whatsapp'
+import { ORDER_STATUS_META } from '@/lib/orders/stateMachine'
 import type { Order, OrderItemFlavor } from '@/types'
 
 interface OrderCardProps {
@@ -29,19 +30,6 @@ function CopyButton({ text }: { text: string }) {
   )
 }
 
-const STATUS_COLORS: Record<string, string> = {
-  pending:          'bg-stone-700/40 text-stone-300',
-  confirmed:        'bg-accent-500/20 text-accent-400',
-  preparing:        'bg-orange-500/20 text-orange-400',
-  out_for_delivery: 'bg-blue-500/20 text-blue-400',
-  delivered:        'bg-herb/20 text-herb',
-  cancelled:        'bg-brand-700/20 text-brand-400',
-}
-const STATUS_LABELS: Record<string, string> = {
-  pending: 'Aguardando', confirmed: 'Confirmado', preparing: 'Preparando',
-  out_for_delivery: 'Saiu p/ entrega', delivered: 'Entregue', cancelled: 'Cancelado',
-}
-
 export function OrderCard({ order }: OrderCardProps) {
   const [expanded, setExpanded] = useState(false)
 
@@ -58,8 +46,8 @@ export function OrderCard({ order }: OrderCardProps) {
       {/* Header do card */}
       <div className="flex items-center gap-3 px-4 py-3 flex-wrap">
         {/* Status badge */}
-        <span className={`text-xs font-semibold rounded-full px-2.5 py-1 ${STATUS_COLORS[order.status] ?? STATUS_COLORS.pending}`}>
-          {STATUS_LABELS[order.status] ?? order.status}
+        <span className={`text-xs font-semibold rounded-full px-2.5 py-1 ${ORDER_STATUS_META[order.status].color}`}>
+          {ORDER_STATUS_META[order.status].emoji} {ORDER_STATUS_META[order.status].label}
         </span>
 
         {/* Nome + hora */}
