@@ -71,13 +71,13 @@
 
 | ID | Título | Status |
 |---|---|---|
-| [E-B1](backlog-items/E-B1.md) | View `v_revenue_daily` (faturamento + ticket médio) | `pending` |
-| [E-B2](backlog-items/E-B2.md) | View `v_lead_times` | `pending` |
-| [E-B3](backlog-items/E-B3.md) | View `v_top_products` | `pending` |
-| [E-B4](backlog-items/E-B4.md) | View `v_peak_hours` | `pending` |
-| [E-B5](backlog-items/E-B5.md) | Dashboard de relatórios (owner-gated) | `pending` |
-| [E-B6](backlog-items/E-B6.md) | Export CSV do dashboard | `pending` |
-| [E-B7](backlog-items/E-B7.md) | Export PDF via `window.print()` | `pending` |
+| [E-B1](backlog-items/E-B1.md) | View `v_revenue_daily` (faturamento + ticket médio) | `done` |
+| [E-B2](backlog-items/E-B2.md) | View `v_lead_times` | `done` |
+| [E-B3](backlog-items/E-B3.md) | View `v_top_products` | `done` |
+| [E-B4](backlog-items/E-B4.md) | View `v_peak_hours` | `done` |
+| [E-B5](backlog-items/E-B5.md) | Dashboard de relatórios (owner-gated) | `done` |
+| [E-B6](backlog-items/E-B6.md) | Export CSV do dashboard | `done` |
+| [E-B7](backlog-items/E-B7.md) | Export PDF via `window.print()` | `done` |
 
 ## Cycle Docs — Guias standalone
 
@@ -94,7 +94,7 @@
 
 ## Status summary
 
-- **Pending:** 13
+- **Pending:** 6
 - **In-progress:** 0
-- **Done:** 38
+- **Done:** 45
 - **Superseded:** 0

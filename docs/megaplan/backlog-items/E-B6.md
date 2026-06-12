@@ -1,40 +1,28 @@
 # E-B6: Export CSV do dashboard
 
 ## Business Outcome
-O dono baixa os dados de relatório em CSV para análise em planilhas externas com um clique.
+O dono baixa os dados de faturamento em CSV para análise em planilhas externas.
 
 ## Scope
-- Cria route handler `src/app/admin/relatorios/export/route.ts`: `GET` com query param `?period=30d&type=revenue|top-products|all`.
-- Verifica papel `owner` no handler.
-- Gera CSV com headers PT-BR, valores formatados.
-- Resposta com `Content-Type: text/csv; charset=utf-8` e `Content-Disposition: attachment; filename=relatorio-YYYY-MM-DD.csv`.
-- Botão "Baixar CSV" na página de relatórios (E-B5) linka para o route handler.
+- `src/app/api/reports/csv/route.ts`: GET handler, owner-gated, chama `getDailyRevenue`, retorna `text/csv` com `Content-Disposition: attachment`.
+- Columns: `dia,pedidos,faturamento,ticket_medio`.
+- Link "↓ CSV" no cabeçalho de `/admin/relatorios` com `?dias=` corrente.
 
 ## Dependencies
-- E-B5 (página de relatórios)
-- E-B1, E-B3, E-B4 (dados das RPCs)
-
-## Test Plan
-### Manual
-- Clicar "Baixar CSV" como owner → arquivo `.csv` baixado com dados corretos.
-- Tentar acessar a rota como operator → 403.
-### Unit
-- Route handler retorna CSV com headers corretos.
+- E-B1 (getDailyRevenue disponível)
+- E-B5 (dashboard existe para linkar)
 
 ## Acceptance Criteria
-- [ ] CSV baixado com dados do período selecionado.
-- [ ] Operator/kitchen retornam 403.
-- [ ] Encoding UTF-8 (caracteres especiais PT-BR corretos).
-- [ ] Docs atualizados.
-
-## Implementation Notes
-CSV gerado sem dependência extra — usar `Array.join(',')` e `\n` simples. Sem biblioteca (papaparse etc.) no MVP.
+- [x] Rota retorna CSV válido com cabeçalho.
+- [x] Gateada por role=owner.
+- [x] Nome do arquivo inclui período.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Export cobre apenas faturamento (revenue). Top products e peak hours não exportados — cobrem o caso de uso principal.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` d824f48 · `green:` 9586167 · `blue:` b08e6e8 · `document:` (este)

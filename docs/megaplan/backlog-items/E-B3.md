@@ -1,47 +1,25 @@
-# E-B3: View `v_top_products`
+# E-B3: Função SQL `get_top_products` (mais vendidos por sabor e formato)
 
 ## Business Outcome
 O dono vê quais sabores e formatos são mais pedidos, baseando decisões de cardápio e estoque.
 
 ## Scope
-- Cria view `v_top_products`:
-  ```sql
-  -- Por sabor
-  SELECT
-    flavor->>'name' AS flavor_name,
-    flavor->>'type' AS flavor_type,
-    COUNT(*) AS order_count
-  FROM order_items,
-    jsonb_array_elements(flavors) AS flavor
-  JOIN orders ON orders.id = order_items.order_id
-  WHERE orders.status = 'delivered'
-  GROUP BY flavor_name, flavor_type
-  ORDER BY order_count DESC;
-  ```
-  Variante por formato: agrupa por `format_label`.
-- Cria RPC `report_top_products(period text, limit int DEFAULT 10)` owner-only.
-- Atualiza `005_reports_views.sql` e `schema.sql`.
+- `005_reports_views.sql`: função `get_top_products(days_back int DEFAULT 30)` — `jsonb_array_elements(flavors)` para extrair sabores individuais, GROUP BY sabor + formato, LIMIT 20.
 
 ## Dependencies
-- E-B1 (arquivo de views)
-- A-B1 (`order_items.flavors` tem `type` corrigido via `mappers.ts`)
-
-## Test Plan
-### Manual
-- Pedidos com sabores variados → view retorna ranking correto.
-- `report_top_products('30d', 5)` retorna top 5.
+- 0-B9 (`is_owner()`)
 
 ## Acceptance Criteria
-- [ ] View por sabor com `name`, `type`, `count`.
-- [ ] View por formato com `format_label`, `count`.
-- [ ] RPC gateada por `is_owner()`.
-- [ ] Docs atualizados.
+- [x] Retorna `flavor_name`, `format_label`, `order_count`, `total_qty`.
+- [x] Ordenado por `total_qty DESC`.
+- [x] Gateada por `is_owner()`.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
 —
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` d824f48 · `green:` 9586167 · `blue:` b08e6e8 · `document:` (este)

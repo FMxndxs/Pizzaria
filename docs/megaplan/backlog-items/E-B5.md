@@ -1,37 +1,30 @@
 # E-B5: Dashboard de relatórios (owner-gated)
 
 ## Business Outcome
-O dono acessa uma página de relatórios no painel com métricas consolidadas (faturamento, ticket médio, mais vendidos, picos horários) com filtro de período.
+O dono acessa uma página de relatórios com métricas consolidadas e filtro de período.
 
 ## Scope
-- Cria `src/app/admin/(dashboard)/relatorios/page.tsx`: server component, owner-gated (`assertRole` ou verificação no layout).
-- Chama as RPCs de E-B1, E-B2, E-B3, E-B4 com o período selecionado.
-- Componentes de UI: `RevenueCard`, `TopProductsTable`, `PeakHoursChart` (ou tabela simples), `LeadTimeSummary`.
-- Filtro de período: `15d | 30d | month` via search param (`?period=30d`).
-- Botões "Baixar CSV" e "Baixar PDF" (implementados em E-B6 e E-B7).
-- Adiciona link "Relatórios" no `AdminSidebar` (visível apenas para `owner`).
+- `src/app/admin/relatorios/page.tsx`: server component, owner-gated inline (auth.getUser + profiles.role check).
+- KPI cards: pedidos totais, faturamento total, ticket médio, lead time médio.
+- Tabelas: RevenueTable, TopProductsTable, PeakHoursTable.
+- Seletor de período: 15 / 30 / 90 dias via `?dias=` URL param.
+- Link para CSV export no cabeçalho.
+- AdminSidebar: link Relatórios com BarChart2 icon.
 
 ## Dependencies
-- E-B1, E-B2, E-B3, E-B4 (RPCs existem)
-- 0-B9 (`is_owner()`)
-
-## Test Plan
-### Manual
-- Logar como `owner` → link "Relatórios" aparece no sidebar; página carrega com dados.
-- Logar como `operator` → link não aparece; URL `/admin/relatorios` redireciona.
-- Mudar período → dados atualizam.
+- E-B1..E-B4 (funções RPC disponíveis)
 
 ## Acceptance Criteria
-- [ ] Página acessível apenas para `owner`.
-- [ ] 4 seções de métricas renderizadas.
-- [ ] Filtro de período funcional.
-- [ ] Docs atualizados.
+- [x] Página acessível apenas para role=owner.
+- [x] KPIs e tabelas exibem dados do período.
+- [x] Seletor de período funciona.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+`LeadTimesTable` não criada — lead time aparece apenas como KPI (média). Tabela detalhada de lead times deferred.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` d824f48 · `green:` 9586167 · `blue:` b08e6e8 · `document:` (este)

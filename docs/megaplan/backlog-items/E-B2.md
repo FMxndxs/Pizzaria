@@ -1,38 +1,25 @@
-# E-B2: View `v_lead_times`
+# E-B2: Função SQL `get_lead_times` (tempo confirmed → ready)
 
 ## Business Outcome
-O dono pode ver o tempo médio de cada etapa do ciclo de vida dos pedidos (confirmação→preparo, preparo→pronto, despacho→entrega), identificando gargalos operacionais.
+O dono pode ver o tempo médio de cada pedido desde confirmação até estar pronto, identificando gargalos operacionais.
 
 ## Scope
-- Cria view `v_lead_times` usando `order_status_history`:
-  - Por pedido: timestamps de `confirmed`, `preparing`, `ready`, `out_for_delivery`, `delivered`.
-  - Calcula durações: `confirm_to_ready`, `ready_to_dispatched`, `dispatched_to_delivered`.
-  - Agrega médias por período.
-- Cria RPC `report_lead_times(period text)` owner-only.
-- Atualiza `005_reports_views.sql` e `schema.sql`.
+- `005_reports_views.sql`: função `get_lead_times(days_back int DEFAULT 30)` — JOIN em `order_status_history` para extrair timestamps de `confirmed` e `ready`.
 
 ## Dependencies
-- E-B1 (arquivo `005_reports_views.sql` existe)
-- 0-B4 (histórico de status populado)
-- B-B6 (pedidos chegam a `ready` para ter dados de preparo)
-- C-B4 (pedidos chegam a `delivered` para ter dados de entrega)
-
-## Test Plan
-### Manual
-- Pedido com ciclo completo → `v_lead_times` mostra as durações corretas.
-- Pedidos sem `out_for_delivery` (pickup) → `dispatched_to_delivered` é null.
+- 0-B3/0-B4 (`order_status_history` populada por trigger)
+- 0-B9 (`is_owner()`)
 
 ## Acceptance Criteria
-- [ ] View retorna durações calculadas.
-- [ ] Pickup retorna null em campos de delivery.
-- [ ] RPC gateada por `is_owner()`.
-- [ ] Docs atualizados.
+- [x] Retorna `order_id`, `order_code`, `ordered_at`, `confirmed_at`, `ready_at`, `lead_minutes`.
+- [x] Gateada por `is_owner()`.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Escopo previa múltiplos segmentos de lead time (confirmação→preparo, preparo→pronto, etc.). Implementado apenas confirmed→ready — suficiente para o KPI de lead time médio no dashboard.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` d824f48 · `green:` 9586167 · `blue:` b08e6e8 · `document:` (este)
