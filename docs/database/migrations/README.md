@@ -18,8 +18,10 @@ NNN_descricao_curta.sql
 |---|---|---|
 | `001_fix_guest_checkout_grants.sql` | Grants para checkout guest | — |
 | `002_orders_extend.sql` | `ready` no enum, `order_code`, `fulfillment_type`, `updated_at` | 001 |
-| `003_order_status_history.sql` | Tabela + triggers de histórico de status | 002 |
-| `004_profiles_role.sql` | Enum `user_role`, coluna `profiles.role`, helpers SQL | — |
+| `004_profiles_role.sql` | Enum `user_role`, coluna `profiles.role`, helpers SQL (`is_staff`, `is_owner`) | — |
+| `003_order_status_history.sql` | Tabela + triggers de histórico de status | 002 + **004** (usa `is_staff()`) |
+
+> ⚠️ **004 antes de 003**: a policy RLS de `003` referencia `is_staff()`, que só existe após `004` ser aplicado. Execute 004 primeiro, mesmo que o número do arquivo sugira o contrário.
 
 ## ⚠️ Atenção especial: 002_orders_extend.sql
 
