@@ -40,13 +40,13 @@
 
 | ID | Título | Status |
 |---|---|---|
-| [B-B1](backlog-items/B-B1.md) | Login kitchen + gate `/cozinha` | `pending` |
-| [B-B2](backlog-items/B-B2.md) | Shell da rota `/cozinha` + fetch inicial da fila | `pending` |
-| [B-B3](backlog-items/B-B3.md) | Publication Realtime em `orders` | `pending` |
-| [B-B4](backlog-items/B-B4.md) | Subscription live no KDS | `pending` |
-| [B-B5](backlog-items/B-B5.md) | Ação "Iniciar preparo" no KDS | `pending` |
-| [B-B6](backlog-items/B-B6.md) | Ação "Marcar pronto" no KDS | `pending` |
-| [B-B7](backlog-items/B-B7.md) | Badge de tempo decorrido por pedido | `pending` |
+| [B-B1](backlog-items/B-B1.md) | Login kitchen + gate `/cozinha` | `done` |
+| [B-B2](backlog-items/B-B2.md) | Shell da rota `/cozinha` + fetch inicial da fila | `done` |
+| [B-B3](backlog-items/B-B3.md) | Publication Realtime em `orders` | `done` |
+| [B-B4](backlog-items/B-B4.md) | Subscription live no KDS | `done` |
+| [B-B5](backlog-items/B-B5.md) | Ação "Iniciar preparo" no KDS | `done` |
+| [B-B6](backlog-items/B-B6.md) | Ação "Marcar pronto" no KDS | `done` |
+| [B-B7](backlog-items/B-B7.md) | Badge de tempo decorrido por pedido | `done` |
 
 ## Cycle C — Despacho / entrega
 
@@ -94,7 +94,7 @@
 
 ## Status summary
 
-- **Pending:** 29
+- **Pending:** 22
 - **In-progress:** 0
-- **Done:** 22
+- **Done:** 29
 - **Superseded:** 0
