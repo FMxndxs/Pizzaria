@@ -52,7 +52,10 @@ export async function advanceOrderStatusAction(
 ): Promise<OrderServiceResult<Order>> {
   const client = await createClient()
   const result = await svcAdvanceStatus(client, orderId, toStatus as Order['status'])
-  if (result.ok) revalidatePath('/admin/pedidos')
+  if (result.ok) {
+    revalidatePath('/admin/pedidos')
+    revalidatePath('/cozinha')
+  }
   return result
 }
 
@@ -61,6 +64,9 @@ export async function cancelOrderAction(
 ): Promise<OrderServiceResult<Order>> {
   const client = await createClient()
   const result = await svcCancelOrder(client, orderId)
-  if (result.ok) revalidatePath('/admin/pedidos')
+  if (result.ok) {
+    revalidatePath('/admin/pedidos')
+    revalidatePath('/cozinha')
+  }
   return result
 }
