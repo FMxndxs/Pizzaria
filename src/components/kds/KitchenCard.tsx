@@ -94,6 +94,15 @@ export function KitchenCard({ order }: KitchenCardProps) {
             {isPending ? '…' : 'Marcar pronto'}
           </button>
         )}
+        <a
+          href={`/admin/pedidos/${order.id}/ticket-cozinha`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-xl border border-stone-700/60 text-stone-400 hover:text-foreground hover:border-stone-600 text-xs px-3 py-2 transition-colors"
+          title="Imprimir ticket"
+        >
+          🖨️
+        </a>
       </div>
     </div>
   )

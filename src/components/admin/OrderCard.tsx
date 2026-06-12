@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, ChevronUp, Copy, Check, Phone, MapPin, MessageSquare } from 'lucide-react'
+import { ChevronDown, ChevronUp, Copy, Check, Phone, Printer } from 'lucide-react'
 import { OrderStatusSelect } from './OrderStatusSelect'
 import { formatBRL } from '@/lib/utils/formatters'
 import { buildWhatsAppUrl } from '@/lib/utils/whatsapp'
@@ -186,7 +186,7 @@ export function OrderCard({ order }: OrderCardProps) {
           {/* Observações */}
           {order.notes && (
             <div className="rounded-xl bg-stone-800/30 px-3 py-2.5 flex items-start gap-2">
-              <MessageSquare className="w-3.5 h-3.5 text-stone-500 shrink-0 mt-0.5" />
+              <Phone className="w-3.5 h-3.5 text-stone-500 shrink-0 mt-0.5" />
               <p className="text-sm text-stone-300">{order.notes}</p>
             </div>
           )}
@@ -198,15 +198,37 @@ export function OrderCard({ order }: OrderCardProps) {
               current={order.status}
               fulfillmentType={order.fulfillment_type ?? 'delivery'}
             />
-            <a
-              href={`https://wa.me/${order.customer_phone?.replace(/\D/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs text-herb hover:text-herb/80 transition-colors font-medium"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              Abrir WhatsApp
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href={`/admin/pedidos/${order.id}/ticket-cozinha`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs text-stone-400 hover:text-foreground transition-colors"
+                title="Ticket cozinha"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                Cozinha
+              </a>
+              <a
+                href={`/admin/pedidos/${order.id}/ticket-entrega`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs text-stone-400 hover:text-foreground transition-colors"
+                title="Ticket entrega/retirada"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                {order.fulfillment_type === 'pickup' ? 'Retirada' : 'Entrega'}
+              </a>
+              <a
+                href={`https://wa.me/${order.customer_phone?.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-xs text-herb hover:text-herb/80 transition-colors font-medium"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       )}
