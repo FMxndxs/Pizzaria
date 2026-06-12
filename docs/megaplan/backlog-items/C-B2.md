@@ -32,10 +32,10 @@ O operador despacha um pedido delivery pronto (`ready → out_for_delivery`), re
 - [ ] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+`courier_name` salvo em `orders.courier_name` (coluna já existia na migration 002). Validação de fulfillment_type coberta pela máquina de estados (canTransition pickup→out_for_delivery = false).
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` 3528c44 · `green:` 4d7f13f · `blue:` ce36523 · `document:` (este commit)

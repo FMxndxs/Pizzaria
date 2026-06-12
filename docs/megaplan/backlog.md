@@ -52,11 +52,11 @@
 
 | ID | Título | Status |
 |---|---|---|
-| [C-B1](backlog-items/C-B1.md) | View de despacho filtrada por `fulfillment_type` | `pending` |
-| [C-B2](backlog-items/C-B2.md) | Server Action `dispatchDelivery` | `pending` |
-| [C-B3](backlog-items/C-B3.md) | Server Action `markPickedUp` (retirada) | `pending` |
-| [C-B4](backlog-items/C-B4.md) | Server Action `markDelivered` | `pending` |
-| [C-B5](backlog-items/C-B5.md) | Captura `courier_name` no despacho | `pending` |
+| [C-B1](backlog-items/C-B1.md) | View de despacho filtrada por `fulfillment_type` | `done` |
+| [C-B2](backlog-items/C-B2.md) | Server Action `dispatchDelivery` | `done` |
+| [C-B3](backlog-items/C-B3.md) | Server Action `markPickedUp` (retirada) | `done` |
+| [C-B4](backlog-items/C-B4.md) | Server Action `markDelivered` | `done` |
+| [C-B5](backlog-items/C-B5.md) | Captura `courier_name` no despacho | `done` |
 
 ## Cycle D — Impressão de tickets
 
@@ -94,7 +94,7 @@
 
 ## Status summary
 
-- **Pending:** 22
+- **Pending:** 17
 - **In-progress:** 0
-- **Done:** 29
+- **Done:** 34
 - **Superseded:** 0

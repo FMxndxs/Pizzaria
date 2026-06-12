@@ -26,10 +26,10 @@ O operador tem uma visão dedicada dos pedidos prontos (`ready`), separados entr
 - [ ] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Página inclui também pedidos `out_for_delivery` (seção "Em rota") além dos `ready` — agrega as 3 seções de despacho numa única view.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` 3528c44 · `green:` 4d7f13f · `blue:` ce36523 · `document:` (este commit)

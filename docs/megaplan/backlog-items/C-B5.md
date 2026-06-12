@@ -28,10 +28,10 @@ O nome do motoboy é registrado no pedido no momento do despacho, aparecendo no 
 - [ ] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Coluna `courier_name text NULL` já estava na migration 002 (linha 37). Nenhuma nova migration necessária. `Order.courier_name` já estava em `src/types/index.ts` desde o Cycle 0.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` 3528c44 · `green:` 4d7f13f · `blue:` ce36523 · `document:` (este commit)

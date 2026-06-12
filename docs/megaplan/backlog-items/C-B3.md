@@ -29,10 +29,10 @@ O operador marca um pedido pickup como retirado pelo cliente (`ready → deliver
 - [ ] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Validação delivery→delivered = false coberta pela máquina de estados (delivery ready → out_for_delivery, não direto p/ delivered).
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` 3528c44 · `green:` 4d7f13f · `blue:` ce36523 · `document:` (este commit)

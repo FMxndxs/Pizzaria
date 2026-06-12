@@ -30,10 +30,10 @@ O operador registra a entrega de um pedido delivery (`out_for_delivery → deliv
 Com C-B4 `done`, o ciclo de vida completo de um pedido delivery está implementado — este é o pré-requisito para E-B2 (`v_lead_times`) ter dados reais do ciclo completo.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Botão "Confirmar entrega" está no DispatchCard (seção "Em rota" da página de despacho), não no OrderCard do painel de pedidos — mais natural para o fluxo operacional.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` 3528c44 · `green:` 4d7f13f · `blue:` ce36523 · `document:` (este commit)
