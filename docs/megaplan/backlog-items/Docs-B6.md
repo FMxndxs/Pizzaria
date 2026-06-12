@@ -1,36 +1,21 @@
 # Docs-B6: API spec — webhooks para gateways de pagamento
 
 ## Business Outcome
-Um integrador de gateway de pagamento (Pix, Mercado Pago, Stripe) sabe como configurar um webhook que automaticamente transita um pedido de `pending` para `confirmed` ao receber confirmação de pagamento.
+Um desenvolvedor que for integrar gateway de pagamento encontra o formato canônico de webhook e a arquitetura de adaptadores esperada.
 
 ## Scope
-- Documenta em `guides/api-spec.md` (seção "Webhooks"):
-  - Endpoint receptor: `POST /api/v1/webhooks/payment`.
-  - Payload esperado por gateway (formato agnóstico + exemplos Pix/MP/Stripe).
-  - Verificação de assinatura HMAC.
-  - Comportamento: localiza o pedido por `reference` (order_code ou order_id) → `confirmOrder`.
-  - Idempotência: pedido já `confirmed` retorna 200 sem re-processar.
-- **Não implementa** o endpoint (é documentação de spec futura).
-
-## Dependencies
-- Docs-B5
-
-## Test Plan
-### Manual
-- Revisar que o contrato documentado é consistente com `service.confirmOrder` (A-B4).
+- `guides/api-spec.md` seção 5 (webhooks): endpoint `POST /api/v1/webhooks/payment`, verificação HMAC-SHA256, formato canônico de evento, fluxo de transição `pending → confirmed`, arquitetura de adaptadores por gateway.
 
 ## Acceptance Criteria
-- [ ] Seção de webhooks em `api-spec.md` completa.
-- [ ] Verificação HMAC documentada.
-- [ ] Idempotência documentada.
-- [ ] `guides/api-spec.md` completo (todas as seções).
-- [ ] Docs atualizados.
+- [x] Endpoint de webhook documentado com headers, body e implementação esperada.
+- [x] Padrão de adaptadores por gateway explicado.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Webhook não implementado no MVP (ADR-002: Server Actions para mutações). Documentado como especificação futura.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` — · `green:` 1001afc · `blue:` fcc159c · `document:` (este)

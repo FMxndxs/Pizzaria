@@ -83,18 +83,18 @@
 
 | ID | Título | Status |
 |---|---|---|
-| [Docs-B1](backlog-items/Docs-B1.md) | Replicação: novo projeto Supabase + env | `pending` |
-| [Docs-B2](backlog-items/Docs-B2.md) | Replicação: schema + migrations + seed em ordem | `pending` |
-| [Docs-B3](backlog-items/Docs-B3.md) | Replicação: deploy Vercel + 1º owner | `pending` |
-| [Docs-B4](backlog-items/Docs-B4.md) | API spec: modelo de recursos + auth | `pending` |
-| [Docs-B5](backlog-items/Docs-B5.md) | API spec: endpoints do ciclo de pedido | `pending` |
-| [Docs-B6](backlog-items/Docs-B6.md) | API spec: webhooks para gateways de pagamento | `pending` |
+| [Docs-B1](backlog-items/Docs-B1.md) | Replicação: novo projeto Supabase + env | `done` |
+| [Docs-B2](backlog-items/Docs-B2.md) | Replicação: schema + migrations + seed em ordem | `done` |
+| [Docs-B3](backlog-items/Docs-B3.md) | Replicação: deploy Vercel + 1º owner | `done` |
+| [Docs-B4](backlog-items/Docs-B4.md) | API spec: modelo de recursos + auth | `done` |
+| [Docs-B5](backlog-items/Docs-B5.md) | API spec: endpoints do ciclo de pedido | `done` |
+| [Docs-B6](backlog-items/Docs-B6.md) | API spec: webhooks para gateways de pagamento | `done` |
 
 ---
 
 ## Status summary
 
-- **Pending:** 6
+- **Pending:** 0
 - **In-progress:** 0
-- **Done:** 45
+- **Done:** 51
 - **Superseded:** 0

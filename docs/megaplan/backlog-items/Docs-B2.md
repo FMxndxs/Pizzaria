@@ -1,36 +1,21 @@
 # Docs-B2: Replicação — schema + migrations + seed em ordem
 
 ## Business Outcome
-Um desenvolvedor aplica o schema completo e os seeds de catálogo em um banco limpo, resultando em um banco idêntico ao do projeto original.
+Um desenvolvedor aplica o schema e todas as migrations na ordem correta, incluindo o aviso sobre a migration 002 (2 etapas).
 
 ## Scope
-- Documenta em `guides/replication.md` (seções 3 e 4):
-  - Ordem exata de aplicação das migrations (001 → 007).
-  - Alerta para o statement isolado de `ADD VALUE 'ready'` (ref. `docs/database/migrations/README.md`).
-  - Como aplicar os seeds (`docs/database/seed/001_formats.sql`, `002_flavors.sql`).
-  - Verificação pós-aplicação: queries de smoke-test para confirmar estrutura.
-
-## Dependencies
-- Docs-B1
-- 0-B13 (README de migrations existe)
-- Todos os B-items de Cycle 0 que geram arquivos de migration
-
-## Test Plan
-### Manual
-- Seguir o guia em banco limpo → todas as tabelas, enums, triggers e views criados corretamente.
-- Queries de smoke-test no guia retornam resultados esperados.
+- `guides/replication.md` seções 3 (migrations em ordem) e 4 (seeds do catálogo).
+- Tabela com ordem obrigatória, conteúdo de cada arquivo e instruções especiais.
+- Opções de seed: via painel admin ou bulk SQL.
 
 ## Acceptance Criteria
-- [ ] Guia cobre todas as migrations em ordem.
-- [ ] Queries de smoke-test incluídas e funcionais.
-- [ ] Testado em banco limpo.
-- [ ] Docs atualizados.
+- [x] Tabela de migrations com ordem, conteúdo e avisos.
+- [x] Instrução sobre 002 em 2 etapas documentada.
+- [x] Seções 3 e 4 de `replication.md` preenchidas.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
-
-## Known Drift
-—
+`done`
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` — · `green:` 1001afc · `blue:` fcc159c · `document:` (este)

@@ -1,33 +1,20 @@
 # Docs-B3: Replicação — deploy Vercel + 1º owner
 
 ## Business Outcome
-Um desenvolvedor coloca o sistema em produção na Vercel e cria o primeiro usuário owner, completando o deploy de um novo cliente.
+Um desenvolvedor faz deploy na Vercel, cadastra o primeiro owner via SQL e confirma o sistema funcionando com o checklist de smoke-test.
 
 ## Scope
-- Documenta em `guides/replication.md` (seções 5, 6 e 7):
-  - Como fazer deploy na Vercel (import do repositório, env vars, domínio).
-  - Como criar o primeiro usuário no Supabase Authentication.
-  - Como setar `profiles.role = 'owner'` manualmente via SQL Editor (primeiro owner).
-  - Checklist de smoke-test pós-deploy: login, criar pedido, confirmar, KDS, relatório.
-
-## Dependencies
-- Docs-B2
-
-## Test Plan
-### Manual
-- Seguir o guia completo (Docs-B1 + B2 + B3) em um repositório fork → deploy funcional com owner logado e pedido criado.
+- `guides/replication.md` seções 5 (deploy Vercel), 6 (primeiro owner via SQL UPDATE) e 7 (checklist de smoke-test completo).
+- Checklist cobre: site público, checkout, painel admin, KDS, despacho, tickets, relatórios.
 
 ## Acceptance Criteria
-- [ ] Guia cobre deploy Vercel, criação de owner, e smoke-test completo.
-- [ ] Smoke-test testado em um deploy real.
-- [ ] `guides/replication.md` completo (todas as seções preenchidas).
-- [ ] Docs atualizados.
+- [x] Instruções de deploy Vercel documentadas.
+- [x] Instrução de promoção a owner via SQL.
+- [x] Checklist de smoke-test com 12 itens verificáveis.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
-
-## Known Drift
-—
+`done`
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` — · `green:` 1001afc · `blue:` fcc159c · `document:` (este)

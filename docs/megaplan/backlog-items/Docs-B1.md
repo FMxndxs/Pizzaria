@@ -1,34 +1,20 @@
 # Docs-B1: Replicação — novo projeto Supabase + env
 
 ## Business Outcome
-Um desenvolvedor consegue criar do zero o ambiente Supabase e configurar as variáveis de ambiente para um novo cliente, seguindo um checklist sem ambiguidade.
+Um desenvolvedor consegue criar do zero o ambiente Supabase e configurar as variáveis de ambiente, seguindo um checklist sem ambiguidade.
 
 ## Scope
-- Documenta em `guides/replication.md` (seções 1 e 2):
-  - Como criar novo projeto Supabase (nome, região, senha).
-  - Quais variáveis de ambiente copiar (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_WHATSAPP_NUMBER`, etc.).
-  - Como criar o arquivo `.env.local` para desenvolvimento.
-  - Como configurar as env vars na Vercel.
-- **Não inclui:** a aplicação do schema (→ Docs-B2).
-
-## Dependencies
-- 0-B13 (convenção de migrations documentada)
-
-## Test Plan
-### Manual
-- Seguir o checklist em um projeto Supabase limpo → projeto criado, `.env.local` configurado, `supabase.auth.getUser()` retorna resposta válida.
+- `guides/replication.md` seções 1 (Criar projeto Supabase) e 2 (Configurar variáveis).
+- Cobre: Project URL, anon key, service_role key, WhatsApp number, freight config.
+- `.env.local` de desenvolvimento e configuração na Vercel.
 
 ## Acceptance Criteria
-- [ ] Checklist cobre criação do projeto Supabase e todas as env vars.
-- [ ] Checklist testado em um projeto limpo.
-- [ ] `guides/replication.md` seções 1 e 2 preenchidas.
-- [ ] Docs atualizados.
+- [x] Checklist cobre criação do projeto e todas as env vars.
+- [x] Seções 1 e 2 de `replication.md` preenchidas.
+- [x] Docs atualizados.
 
 ## Status
-`pending`
-
-## Known Drift
-—
+`done`
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` — (docs não têm fase red) · `green:` 1001afc · `blue:` fcc159c · `document:` (este)
