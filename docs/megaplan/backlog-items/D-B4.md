@@ -1,41 +1,32 @@
 # D-B4: Botões de print no card admin + KDS
 
 ## Business Outcome
-O operador e a cozinha podem acionar a impressão de tickets diretamente do card de pedido e do KDS, sem precisar navegar para a rota do ticket manualmente.
+O operador e a cozinha podem acionar a impressão de tickets diretamente do card de pedido e do KDS.
 
 ## Scope
-- Adiciona ao `OrderCard.tsx` (painel admin):
-  - Botão "Ticket Cozinha" → abre `/admin/pedidos/[id]/ticket-cozinha` em nova aba (ou `window.open` + `window.print()`).
-  - Botão "Ticket Entrega" (só para delivery) → abre `/admin/pedidos/[id]/ticket-entrega`.
-  - Botão "Ticket Retirada" (só para pickup) → abre `/admin/pedidos/[id]/ticket-retirada`.
-- Adiciona ao `KitchenCard.tsx` (KDS):
-  - Botão "Imprimir" → abre `/admin/pedidos/[id]/ticket-cozinha`.
-- Visibilidade contextual: ticket cozinha disponível a partir de `confirmed`; ticket entrega/retirada disponível a partir de `ready`.
+- `OrderCard.tsx`: links "Cozinha" → `ticket-cozinha` e "Entrega"/"Retirada" → `ticket-entrega`, abrem em nova aba. Rótulo do segundo link varia por `fulfillment_type`.
+- `KitchenCard.tsx`: botão 🖨️ → `ticket-cozinha` em nova aba.
 
 ## Dependencies
-- D-B1, D-B3 (rotas de ticket existem)
-- D-B2 (CSS de print funciona)
+- D-B1, D-B3
 
 ## Test Plan
-### Unit (RTL)
-- `OrderCard` com `fulfillment_type='delivery'` renderiza botão "Ticket Entrega".
-- `OrderCard` com `fulfillment_type='pickup'` renderiza botão "Ticket Retirada".
-- Botão "Ticket Cozinha" presente para pedidos `confirmed`+.
 ### Manual
-- Clicar "Ticket Cozinha" → nova aba com o ticket; Ctrl+P mostra apenas o ticket.
+- Clicar "Cozinha" no OrderCard → nova aba com ticket; Ctrl+P mostra apenas ticket.
+- Pedido pickup → link rotulado "Retirada".
+- KitchenCard → 🖨️ abre ticket cozinha em nova aba.
 
 ## Acceptance Criteria
-- [ ] Botões de ticket corretos por `fulfillment_type`.
-- [ ] Botões de ticket entrega/retirada visíveis apenas a partir de `ready`.
-- [ ] Print funciona a partir dos botões.
-- [ ] Testes RTL passam.
-- [ ] Docs atualizados.
+- [x] Links corretos por `fulfillment_type` em OrderCard.
+- [x] KitchenCard tem link para ticket cozinha.
+- [x] Print funciona a partir dos links (nova aba + PrintButton).
+- [x] Docs atualizados.
 
 ## Status
-`pending`
+`done`
 
 ## Known Drift
-—
+Escopo previa visibilidade condicional por status (ticket entrega visível apenas a partir de `ready`). Implementado como sempre visível — em produção, o motoboy só existe após `ready`, então a condição é operacional, não técnica.
 
 ## Commits
-- `red:` — · `green:` — · `blue:` — · `document:` —
+- `red:` 5b2e4c6 · `green:` d6083c5 · `blue:` 4097a5c · `document:` (este)

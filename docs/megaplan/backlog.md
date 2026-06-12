@@ -62,10 +62,10 @@
 
 | ID | Título | Status |
 |---|---|---|
-| [D-B1](backlog-items/D-B1.md) | Componente de ticket da cozinha | `pending` |
-| [D-B2](backlog-items/D-B2.md) | CSS `@media print` isolando o ticket | `pending` |
-| [D-B3](backlog-items/D-B3.md) | Componente de ticket do motoboy | `pending` |
-| [D-B4](backlog-items/D-B4.md) | Botões de print no card admin + KDS | `pending` |
+| [D-B1](backlog-items/D-B1.md) | Componente de ticket da cozinha | `done` |
+| [D-B2](backlog-items/D-B2.md) | CSS `@media print` isolando o ticket | `done` |
+| [D-B3](backlog-items/D-B3.md) | Componente de ticket do motoboy | `done` |
+| [D-B4](backlog-items/D-B4.md) | Botões de print no card admin + KDS | `done` |
 
 ## Cycle E — Relatórios / analytics
 
@@ -94,7 +94,7 @@
 
 ## Status summary
 
-- **Pending:** 17
+- **Pending:** 13
 - **In-progress:** 0
-- **Done:** 34
+- **Done:** 38
 - **Superseded:** 0
